@@ -330,6 +330,11 @@ input[data-error]::after {
   cursor: pointer;
   border: 0;
 }
+
+.btn-submit:hover {
+  background-color: #3876ac;
+}
+
 /* custom select styles */
 .custom-select {
   position: relative;
@@ -474,6 +479,7 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
+
 @media screen and (max-width: 800px) {
   .hero-section {
     display: block;
@@ -535,6 +541,7 @@ footer {
 .error-message {
   color: red;
   font-size: 14px;
+  margin-top: 8px;
 }
 
 #firstNameError {
@@ -561,13 +568,16 @@ footer {
   display: none;
 }
 
+#ctoError {
+  display: none;
+}
+
 .modal-succeed {
-  display: none !important;
   position: absolute;
+  display: none;
   top: 50%;
   left: 30%;
   z-index: 1;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -577,6 +587,15 @@ footer {
   padding: 3rem;
   gap: 1.2rem;
   width: 35rem;
+}
+
+@media screen and (max-width: 840px) {
+  .modal-succeed {
+    position: absolute !important;
+    left: 3% !important;
+    top: 50% !important;
+    width: 20em !important;
+  }
 }
 
 .close-button {

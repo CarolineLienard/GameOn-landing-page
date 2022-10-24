@@ -9,6 +9,7 @@ function editNav() {
 
 // Dom element
 const modalbg = document.querySelector('.bground')
+const modalSucceed = document.querySelector(".modal-succeed")
 
 // Open/Close modal 
 function handleOpen() {
@@ -102,33 +103,54 @@ function validateQuantity() {
 
 /* Location validation */
 function validateLocation() {
-  const checkForm = document.querySelector('.formData')
+  const location1 = document.getElementById('location1').checked
+  const location2 = document.getElementById('location2').checked
+  const location3 = document.getElementById('location3').checked
+  const location4 = document.getElementById('location4').checked
+  const location5 = document.getElementById('location5').checked
+  const location6 = document.getElementById('location6').checked
   const errorMessage = document.getElementById('checkError')
 
-  if (checkForm.location.checked === false ) {
+  if (location1 || location2 || location3 || location4 || location5 || location6 ) {
+    errorMessage.style.display="none"
+    return true
+  } else {
     errorMessage.style.display="block"
     return false
-  } else {
-    return true
   }
 }
 
+/* CTO validate */ 
+function validateCTO() {
+  const ctoValue = document.getElementById('checkbox1').checked
+  const errorMessage = document.getElementById('ctoError')
+  
+  if(!ctoValue) {
+    errorMessage.style.display="block"
+    return false
+  } else {
+    errorMessage.style.display="none"
+    return true
+  }
+} 
+
 function onSubmit(event) {
-  const modalSucceed = document.querySelector(".modal-succeed")
   const quantityInput = document.getElementById("quantity")
   const birthInput = document.getElementById("birthDate")
   const emailInput = document.getElementById("email")
   const lastNameInput = document.getElementById("lastName")
   const firstNameInput = document.getElementById("firstName")
-  const valideForm = validateFirstName() && validateLastName() && validateEmail() && validateBirth() && validateQuantity()
+  const valideForm = validateFirstName() && validateLastName() && validateEmail() && validateBirth() && validateQuantity() && validateLocation() && validateCTO() 
 
   if(firstNameInput != '' && lastNameInput != '' && emailInput != '' && birthInput != '' && quantityInput != '' && valideForm) {
     event.preventDefault()
-    alert('Merci pour votre inscription !')
-    modalSucceed.style.display = 'block'
-
+    modalbg.style.display = 'none';
+    modalSucceed.style.display = 'flex'
   } else {
     event.preventDefault()
-    alert('Erreur dans le formulaire')
   }
+}
+
+function closeSucceed() {
+  modalSucceed.style.display = 'none'
 }
